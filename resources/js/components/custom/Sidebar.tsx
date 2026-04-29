@@ -3,7 +3,7 @@ import image from '../../../images/testImage.svg';
 
 export function AppSidebar() {
     return (
-        <aside className="flex w-75 flex-col bg-[#202020] text-white">
+        <aside className="flex w-75  flex-col bg-[#202020] text-white">
             <div className="relative flex w-full justify-center">
                 <img
                     alt="sidebarHeader"
@@ -35,9 +35,8 @@ export function AppSidebar() {
                         className="h-6 w-6 text-red-700 transition-transform hover:scale-110"
                     />
                 </div>
-                <p className="mt-14 w-60 text-center text-sm break-words">
-                    A
-                    wesome description
+                <p className="mt-14 w-60 text-center text-sm ">
+                    Awesome description
                 </p>
             </div>
         </aside>

@@ -5,7 +5,7 @@ export function AppHeader() {
     const [isActive, setActive] = useState(false);
 
     return (
-        <header className="relative h-13 w-full justify-center bg-[#0D0D0D]">
+        <header className="sticky top-0 z-50 h-13 shrink-0 w-full border-b border-zinc-800 bg-[#0D0D0D]">
             <div className="flex h-full items-stretch justify-between">
                 <div className="h-full space-x-6 pl-4">
                     <Link className="text-[18px]" href="#">
@@ -35,9 +35,9 @@ export function AppHeader() {
                     />
                 </div>
             </div>
-          {/*TODO  сделать в будущем вывод постов юзера*/}
+            {/*TODO  сделать в будущем вывод постов юзера*/}
             {isActive && (
-                <div className="absolute grid  space-y-2 top-full left-24 z-50 w-48 rounded-b-md border border-zinc-800 bg-[#151515] py-2 px-3 shadow-xl">
+                <div className="absolute top-full left-24 z-50 grid w-48 space-y-2 rounded-b-md border border-zinc-800 bg-[#151515] px-3 py-2 shadow-xl">
                     <Link href="#">hi!</Link>
                     <Link href="#">hi!</Link>
                     <Link href="#">hi!</Link>

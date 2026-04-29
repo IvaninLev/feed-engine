@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Requests\PostRequest;
+use App\Http\Resources\PostResource;
+use App\Models\Post;
+use App\Models\User;
+use App\Observers\PostObserver;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +23,25 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
+    public function store(PostRequest $request)
+    {
+        // Временно авторизуем первого юзера, чтобы Auth::user() заработал
+        if (app()->environment('local')) {
+            auth()->login(User::first());
+        }
+
+        $post = auth()->user()->posts()->create($request->validated());
+
+        return new PostResource($post);
+    }
+
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
         $this->configureDefaults();
+        Post::observe(PostObserver::class);
     }
 
     /**

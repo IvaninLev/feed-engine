@@ -1,12 +1,16 @@
 import { createInertiaApp } from '@inertiajs/react';
+import { route as ziggyRoute } from 'ziggy-js';
 import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { initializeTheme } from '@/hooks/use-appearance';
 import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import { Ziggy } from '@/ziggy';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+window.route = (name: string, params?: unknown, absolute?: boolean) =>
+    ziggyRoute(name, params as any, absolute, Ziggy as any) as string;
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),
