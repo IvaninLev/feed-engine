@@ -17,11 +17,9 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
         $data = $request->validated();
-        $user = User::first(); // Берем первого попавшегося
+        $user = User::first();
 
-        if (!$user) {
-            return response()->json(['error' => 'дурак нет юзеров'], 500);
-        }
+
 
         $post = $user->posts()->create($data);
 
