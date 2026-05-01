@@ -22,7 +22,9 @@ export default function Index({ posts, stories }: ListProps) {
         <div>
             <Stories stories={stories} />
             <CreatePost />
-            <PostList posts={posts} />
+            <PostList
+                posts={posts}
+            />
         </div>
     );
 }

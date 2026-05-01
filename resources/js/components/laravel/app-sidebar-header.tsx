@@ -1,6 +1,6 @@
-import { Breadcrumbs } from '@/components/breadcrumbs';
-import { SidebarTrigger } from '@/components/ui/sidebar';
-import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
+import { Breadcrumbs } from 'resources/js/components/laravel/breadcrumbs';
+import { SidebarTrigger } from 'resources/js/components/ui/sidebar';
+import type { BreadcrumbItem as BreadcrumbItemType } from 'resources/js/types';
 
 export function AppSidebarHeader({
     breadcrumbs = [],

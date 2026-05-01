@@ -5,12 +5,12 @@ import {
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu';
-import { UserInfo } from '@/components/user-info';
-import { useMobileNavigation } from '@/hooks/use-mobile-navigation';
-import { logout } from '@/routes';
-import { edit } from '@/routes/profile';
-import type { User } from '@/types';
+} from 'resources/js/components/ui/dropdown-menu';
+import { UserInfo } from 'resources/js/components/laravel/user-info';
+import { useMobileNavigation } from 'resources/js/hooks/use-mobile-navigation';
+import { logout } from 'resources/js/routes';
+import { edit } from 'resources/js/routes/profile';
+import type { User } from 'resources/js/types';
 
 type Props = {
     user: User;

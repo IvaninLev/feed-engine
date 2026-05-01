@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum PaginationEnum: int
 {
-    case PAGE_SIZE = 12;
+    case PAGE_SIZE = 4;
 
     public static function size(): int
     {

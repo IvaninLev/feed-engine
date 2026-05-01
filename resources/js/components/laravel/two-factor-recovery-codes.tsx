@@ -1,16 +1,16 @@
 import { Form } from '@inertiajs/react';
 import { Eye, EyeOff, LockKeyhole, RefreshCw } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import AlertError from '@/components/alert-error';
-import { Button } from '@/components/ui/button';
+import AlertError from 'resources/js/components/laravel/alert-error';
+import { Button } from 'resources/js/components/ui/button';
 import {
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
-} from '@/components/ui/card';
-import { regenerateRecoveryCodes } from '@/routes/two-factor';
+} from 'resources/js/components/ui/card';
+import { regenerateRecoveryCodes } from 'resources/js/routes/two-factor';
 
 type Props = {
     recoveryCodesList: string[];

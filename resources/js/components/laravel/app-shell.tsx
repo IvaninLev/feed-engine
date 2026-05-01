@@ -1,7 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import type { ReactNode } from 'react';
-import { SidebarProvider } from '@/components/ui/sidebar';
-import type { AppVariant } from '@/types';
+import { SidebarProvider } from 'resources/js/components/ui/sidebar';
+import type { AppVariant } from 'resources/js/types';
 
 type Props = {
     children: ReactNode;
