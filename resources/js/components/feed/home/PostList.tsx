@@ -1,18 +1,25 @@
 import { Card, CardTitle } from '@/components/ui/card';
+import Pagination from '@/components/ui/pagination';
+import {
+    createPageNavigator,
+} from '@/hooks/use-pagination-navigation';
 import type { Post } from '@/types';
 
 interface PostListProps {
     posts: {
         data: Post[];
-        meta: any;
-        links: any;
+        meta: { total: number; current_page: number; last_page: number };
+        links: { next?: string; prev?: string };
     };
 }
 
 export default function PostList({ posts }: PostListProps) {
     const postList = posts.data;
+    const postPages = posts.meta;
 
-    if (!posts) {
+    const handlePageChange = createPageNavigator('/', true);
+
+    if (!postList || postList.length === 0) {
         return <div>No posts yet...</div>;
     }
 
@@ -38,6 +45,12 @@ export default function PostList({ posts }: PostListProps) {
                     </div>
                 </Card>
             ))}
+
+            <Pagination
+                currentPage={postPages.current_page}
+                lastPage={postPages.last_page}
+                onPageChange={handlePageChange}
+            ></Pagination>
         </div>
     );
 }

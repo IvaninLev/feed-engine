@@ -4,16 +4,16 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from 'resources/js/components/ui/dropdown-menu';
 import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
     useSidebar,
-} from '@/components/ui/sidebar';
-import { UserInfo } from '@/components/user-info';
-import { UserMenuContent } from '@/components/user-menu-content';
-import { useIsMobile } from '@/hooks/use-mobile';
+} from 'resources/js/components/ui/sidebar';
+import { UserInfo } from 'resources/js/components/laravel/user-info';
+import { UserMenuContent } from 'resources/js/components/laravel/user-menu-content';
+import { useIsMobile } from 'resources/js/hooks/use-mobile';
 
 export function NavUser() {
     const { auth } = usePage().props;

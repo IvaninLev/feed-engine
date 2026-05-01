@@ -7,8 +7,8 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import type { BreadcrumbItem as BreadcrumbItemType } from '@/types';
+} from 'resources/js/components/ui/breadcrumb';
+import type { BreadcrumbItem as BreadcrumbItemType } from 'resources/js/types';
 
 export function Breadcrumbs({
     breadcrumbs,

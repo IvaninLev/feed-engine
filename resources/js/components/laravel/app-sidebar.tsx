@@ -1,9 +1,9 @@
 import { Link } from '@inertiajs/react';
 import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
+import AppLogo from 'resources/js/components/laravel/app-logo';
+import { NavFooter } from 'resources/js/components/laravel/nav-footer';
+import { NavMain } from 'resources/js/components/laravel/nav-main';
+import { NavUser } from 'resources/js/components/laravel/nav-user';
 import {
     Sidebar,
     SidebarContent,
@@ -12,9 +12,9 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
-import type { NavItem } from '@/types';
+} from 'resources/js/components/ui/sidebar';
+import { dashboard } from 'resources/js/routes';
+import type { NavItem } from 'resources/js/types';
 
 const mainNavItems: NavItem[] = [
     {

@@ -1,4 +1,4 @@
-import AppLogoIcon from '@/components/app-logo-icon';
+import AppLogoIcon from 'resources/js/components/laravel/app-logo-icon';
 
 export default function AppLogo() {
     return (

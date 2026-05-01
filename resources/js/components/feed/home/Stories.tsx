@@ -11,7 +11,6 @@ interface StoriesListProp {
 export default function Stories({ stories }: StoriesListProp) {
     const storiesList = stories.data;
 
-    console.log('истории получили', stories);
 
     if (!stories) {
         return <div>No posts yet...</div>;

@@ -5,9 +5,9 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-} from '@/components/ui/sidebar';
-import { toUrl } from '@/lib/utils';
-import type { NavItem } from '@/types';
+} from 'resources/js/components/ui/sidebar';
+import { toUrl } from 'resources/js/lib/utils';
+import type { NavItem } from 'resources/js/types';
 
 export function NavFooter({
     items,
