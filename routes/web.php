@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -12,7 +12,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard')->name('dashboard');
 });
 
-Route::post('/post', [PostController::class, 'store'])->name('post.store');
-
+Route::prefix('/')->name('home.')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::post('/post', [HomeController::class, 'store'])->name('store');
+});
 
 require __DIR__.'/settings.php';

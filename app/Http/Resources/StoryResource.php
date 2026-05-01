@@ -2,23 +2,23 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Post;
+use App\Models\Story;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin Post */
-class PostResource extends JsonResource
+/** @mixin Story */
+class StoryResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'text' => $this->text,
             'image' => $this->image,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'expire'
+            'type' => $this->type,
+            'expires_at' => $this->expires_at,
+            'created_at' => $this->created_at->format('d.m.Y'),
+
         ];
     }
 }

@@ -1,37 +1,28 @@
 import { Card, CardTitle } from '@/components/ui/card';
+import type { Post } from '@/types';
 
-export default function PostList() {
-    const posts = [
-        {
-            id: 1,
-            title: 'cool title',
-            text: 'Nullam nec turpis et arcu egestas commodo. Integer sit amet metus non tortor tincidunt interdum. Donec et metus mollis, ultricies est at, ultricies nulla. Morbi non libero magna. Praesent imperdiet magna ac ipsum cursus, ut fermentum turpis tincidunt.',
-            image: 'https://loremflickr.com/400/600?random=1',
-        },
-        {
-            id: 2,
-            title: 'iguess',
-            text: 'Nullam nec turpis et arcu egestas commodo. Integer sit amet metus non tortor tincidunt interdum. Donec et metus mollis, ultricies est at, ultricies nulla. Morbi non libero magna. Praesent imperdiet magna ac ipsum cursus, ut fermentum turpis tincidunt.',
-            image: 'https://loremflickr.com/400/600?random=2',
-        },
-        {
-            id: 3,
-            title: 'iguess',
-            text: 'Nullam nec turpis et arcu egestas commodo. Integer sit amet metus non tortor tincidunt interdum. Donec et metus mollis, ultricies est at, ultricies nulla. Morbi non libero magna. Praesent imperdiet magna ac ipsum cursus, ut fermentum turpis tincidunt.',
-            image: 'https://loremflickr.com/400/600?random=3',
-        },
-        {
-            id: 4,
-            title: 'iguess',
-            text: 'Nullam nec turpis et arcu egestas commodo. Integer sit amet metus non tortor tincidunt interdum. Donec et metus mollis, ultricies est at, ultricies nulla. Morbi non libero magna. Praesent imperdiet magna ac ipsum cursus, ut fermentum turpis tincidunt.',
-            image: 'https://loremflickr.com/400/600?random=4',
-        },
-    ];
+interface PostListProps {
+    posts: {
+        data: Post[];
+        meta: any;
+        links: any;
+    };
+}
+
+export default function PostList({ posts }: PostListProps) {
+    const postList = posts.data;
+
+    if (!posts) {
+        return <div>No posts yet...</div>;
+    }
 
     return (
         <div className="mt-8 justify-items-center space-y-8 overflow-auto shadow-xl">
-            {posts.map((post) => (
-                <Card key={post.id} className="relative w-200 bg-[#202020] p-0 overflow-auto">
+            {postList.map((post) => (
+                <Card
+                    key={post.id}
+                    className="relative w-200 overflow-auto bg-[#202020] p-0"
+                >
                     {post.image && (
                         <img
                             src={post.image}

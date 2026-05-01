@@ -48,5 +48,5 @@ profile:
 test:
 	./vendor/bin/pest
 
-sail :
+sail:
 	./vendor/bin/sail

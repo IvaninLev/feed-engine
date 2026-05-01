@@ -8,7 +8,7 @@ export default function CreatePost() {
     });
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        post(window.route('post.store'), {
+        post(window.route('posts.store'), {
             onSuccess: () => reset('text'),
             onError: () => console.log('тут легло', errors)
         });
