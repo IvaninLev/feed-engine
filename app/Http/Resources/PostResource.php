@@ -17,8 +17,6 @@ class PostResource extends JsonResource
             'text' => $this->text,
             'image' => $this->image,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'expire'
         ];
     }
 }

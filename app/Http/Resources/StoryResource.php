@@ -16,7 +16,6 @@ class StoryResource extends JsonResource
             'title' => $this->title,
             'image' => $this->image,
             'type' => $this->type,
-            'expires_at' => $this->expires_at,
             'created_at' => $this->created_at->format('d.m.Y'),
 
         ];
