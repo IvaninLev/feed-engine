@@ -65,7 +65,6 @@ export function AppHeader() {
                     />
                 </div>
             </div>
-            {/*TODO  сделать в будущем вывод постов юзера*/}
             {menus.posts && (
                 <div className="absolute top-full left-24 z-50 grid w-48 space-y-2 rounded-b-md border border-zinc-800 bg-[#151515] px-3 py-2 shadow-xl">
                     <Link href="#">hi!</Link>
@@ -81,8 +80,8 @@ export function AppHeader() {
             )}
             {menus.profile && (
                 <div className="absolute top-full right-64 gap-2 z-50 grid w-20 justify-start space-y-2 rounded-b-md border border-zinc-800 bg-[#151515] px-3 py-2 shadow-xl">
-                    <Link href="#">profile</Link>
-                    <Link method="post" href="/auth/logout">
+                    <Link href="/profile">profile</Link>
+                    <Link method="post" href="/logout">
                         logout
                     </Link>
                 </div>

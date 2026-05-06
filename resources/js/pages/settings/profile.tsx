@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { edit } from '@/routes/profile';
 import { send } from '@/routes/verification';
 
-export default function Profile({
+export default function MyProfile({
     mustVerifyEmail,
     status,
 }: {
@@ -20,14 +20,14 @@ export default function Profile({
 
     return (
         <>
-            <Head title="Profile settings" />
+            <Head title="MyProfile settings" />
 
-            <h1 className="sr-only">Profile settings</h1>
+            <h1 className="sr-only">MyProfile settings</h1>
 
             <div className="space-y-6">
                 <Heading
                     variant="small"
-                    title="Profile information"
+                    title="MyProfile information"
                     description="Update your name and email address"
                 />
 

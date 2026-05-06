@@ -1,9 +1,9 @@
-import { Card, CardTitle } from '@/components/ui/card';
-import Pagination from '@/components/ui/pagination';
+import { Card, CardTitle } from 'resources/js/components/ui/card';
+import Pagination from 'resources/js/components/ui/pagination';
 import {
     createPageNavigator,
-} from '@/hooks/use-pagination-navigation';
-import type { Post } from '@/types';
+} from 'resources/js/hooks/use-pagination-navigation';
+import type { Post, User } from 'resources/js/types';
 
 interface PostListProps {
     posts: {
@@ -11,9 +11,12 @@ interface PostListProps {
         meta: { total: number; current_page: number; last_page: number };
         links: { next?: string; prev?: string };
     };
+    user:{
+        data:User;
+    }
 }
 
-export default function PostList({ posts }: PostListProps) {
+export default function PostList({ posts, user }: PostListProps) {
     const postList = posts.data;
     const postPages = posts.meta;
 

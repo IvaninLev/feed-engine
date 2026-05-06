@@ -11,7 +11,7 @@ use App\Models\Story;
 use App\Models\User;
 use Inertia\Inertia;
 
-class HomeController extends Controller
+class ProfileController extends Controller
 {
     public function index()
     {
@@ -27,7 +27,28 @@ class HomeController extends Controller
                 ->paginate(PaginationEnum::PAGE_SIZE->value)
         );
 
-        return Inertia::render('Home/Index', [
+        return Inertia::render('Profile/Profile', [
+            'posts' => $posts,
+            'stories' => $stories,
+        ]);
+    }
+
+    public function show(User $id)
+    {
+        $posts = PostResource::collection(
+            Post::where('user_id', '=', $id->id)
+                ->latest()
+                ->paginate(PaginationEnum::PAGE_SIZE->value)
+        );
+        $stories = StoryResource::collection(
+            Story::where('user_id', '=', $id->id)
+                ->isActive()
+                ->latest()
+                ->paginate(PaginationEnum::PAGE_SIZE->value)
+        );
+
+        return Inertia::render('Profile/Profile', [
+            'user' => $id,
             'posts' => $posts,
             'stories' => $stories,
         ]);
@@ -44,10 +65,6 @@ class HomeController extends Controller
 
     }
 
-    public function show(Post $post)
-    {
-        return new PostResource($post);
-    }
 
     public function update(PostRequest $request, Post $post)
     {

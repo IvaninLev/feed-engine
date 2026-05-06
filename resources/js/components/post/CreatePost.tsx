@@ -1,6 +1,6 @@
 import { useForm } from '@inertiajs/react';
 import { CameraIcon, SendHorizonal } from 'lucide-react';
-import { Card } from '@/components/ui/card';
+import { Card } from 'resources/js/components/ui/card';
 
 export default function CreatePost() {
     const { data, setData, post, processing, errors, reset } = useForm({

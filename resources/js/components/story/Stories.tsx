@@ -1,5 +1,5 @@
-import { Card } from '@/components/ui/card';
-import type { Story } from '@/types';
+import { Card } from 'resources/js/components/ui/card';
+import type { Story, User } from 'resources/js/types';
 
 interface StoriesListProp {
     stories: {
@@ -7,10 +7,12 @@ interface StoriesListProp {
         meta: any;
         links: any;
     };
+    user: {
+        data: User;
+    };
 }
-export default function Stories({ stories }: StoriesListProp) {
+export default function Stories({ stories, user }: StoriesListProp) {
     const storiesList = stories.data;
-
 
     if (!stories) {
         return <div>No posts yet...</div>;
