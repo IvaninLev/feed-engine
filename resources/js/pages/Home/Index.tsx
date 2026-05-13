@@ -12,7 +12,7 @@ interface UserProps {
 export default function Index({ users }: UserProps) {
     return (
         <div>
-            <Users users={users } />
+            <Users  users={users } />
         </div>
     );
 }

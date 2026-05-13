@@ -1,22 +1,42 @@
 import { useForm } from '@inertiajs/react';
 import { CameraIcon, SendHorizonal } from 'lucide-react';
+import { useRef, useState } from 'react';
 import { Card } from 'resources/js/components/ui/card';
 
+interface PostProps {
+    text: string;
+    image: File | null;
+}
+
 export default function CreatePost() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        text: '',
-    });
+    const { data, setData, post, processing, errors, reset } =
+        useForm<PostProps>({
+            text: '',
+            image: null,
+        });
+
+    const [previewUrl, setPreviewUrl] = useState<string | null>();
+
+    const fileRef = useRef<HTMLInputElement>(null);
+
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        post(window.route('posts.store'), {
-            onSuccess: () => reset('text'),
-            onError: () => console.log('тут легло', errors)
+        post(window.route('post.store'), {
+            onSuccess: () => reset('text','image'),
+            onError: () => console.log('тут легло', errors),
         });
     };
 
     return (
         <Card className="mt-8 ml-55 flex min-h-18.5 w-full max-w-200 items-stretch border-zinc-800 bg-zinc-900/50 p-4">
             <div className="flex w-full items-center">
+                {previewUrl && (
+                    <img
+                        alt=""
+                        src={`${previewUrl}`}
+                        className="h-30 w-30 object-cover"
+                    />
+                )}
                 <textarea
                     placeholder="Write something"
                     value={data.text}
@@ -24,9 +44,32 @@ export default function CreatePost() {
                     className="flex-1 resize-none bg-transparent py-1 text-sm outline-none"
                 />
                 <div className="flex space-x-4">
+                    <input
+                        ref={fileRef}
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+
+                            if (!file) {
+                                return;
+                            }
+
+                            const url = URL.createObjectURL(file);
+
+                            if (previewUrl) {
+                                URL.revokeObjectURL(url);
+                            }
+
+                            setData('image', file);
+                            setPreviewUrl(URL.createObjectURL(file));
+                        }}
+                    />
+
                     <CameraIcon
-                        className="cursor-pointer transition-colors hover:text-zinc-300"
-                        size={25}
+                        onClick={() => fileRef.current?.click()}
+                        className="hover:cursor-pointer"
                     />
                     <SendHorizonal
                         className="cursor-pointer transition-colors hover:text-white"

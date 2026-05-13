@@ -1,17 +1,24 @@
 import { Link } from '@inertiajs/react';
 import { Card } from '@/components/ui/card';
+import Pagination from '@/components/ui/pagination';
+import { createPageNavigator } from '@/hooks/use-pagination-navigation';
 import type { User } from '@/types';
 
 interface UsersProps {
     users: {
         data: User[];
-        meta: any;
-        links: any;
+        meta: { total: number; current_page: number; last_page: number };
+        links: { next?: string; prev?: string };
     };
 }
 
 export default function Users({ users }: UsersProps) {
+    const pages = users.meta;
+
     const usersList = users.data;
+
+    console.log('page', pages);
+    const handlePageChange = createPageNavigator('/', true);
 
     return (
         <section>
@@ -26,7 +33,7 @@ export default function Users({ users }: UsersProps) {
                         {user.banner && (
                             <div className="relative h-32 overflow-hidden from-cyan-600 to-blue-600">
                                 <img
-                                    src={user.banner}
+                                    src={`/storage/${user.banner}`}
                                     alt=""
                                     className="h-full w-full object-cover opacity-80"
                                 />
@@ -39,7 +46,7 @@ export default function Users({ users }: UsersProps) {
                                 <div className="relative inline-block">
                                     <div className="absolute inset-0 rounded-full from-cyan-400 opacity-75 blur transition-opacity" />
                                     <img
-                                        src={user.avatar}
+                                        src={`/storage/${user.avatar}`}
                                         alt={user.name}
                                         className="relative h-20 w-20 rounded-full border-4 border-slate-800 object-cover"
                                     />
@@ -50,12 +57,20 @@ export default function Users({ users }: UsersProps) {
                                 </div>
                             </div>
                         </div>
-                        <Link href={`/profile/${user.id}`} className="w-full rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all">
+                        <Link
+                            href={`user/${user.id}`}
+                            className="w-full rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all"
+                        >
                             View Profile
                         </Link>
                     </Card>
                 ))}
             </div>
+            {/*<Pagination*/}
+            {/*    currentPage={pages.current_page}*/}
+            {/*    lastPage={pages.last_page}*/}
+            {/*    onPageChange={handlePageChange}*/}
+            {/*/>*/}
         </section>
     );
 }

@@ -13,17 +13,14 @@ interface ListProps {
         meta: any;
         links: any;
     };
-    user: {
-        data: User;
-    };
+
 }
-export default function Profile({ posts, stories, user }: ListProps) {
-    console.log('в профиль пришло', posts);
+export default function Profile({ posts, stories }: ListProps) {
 
     return (
         <div>
-            <Stories user={user} stories={stories} />
-            <PostList user={user} posts={posts} />
+            <Stories stories={stories} />
+            <PostList posts={posts} />
         </div>
     );
 }

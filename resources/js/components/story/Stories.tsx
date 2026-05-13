@@ -7,11 +7,8 @@ interface StoriesListProp {
         meta: any;
         links: any;
     };
-    user: {
-        data: User;
-    };
 }
-export default function Stories({ stories, user }: StoriesListProp) {
+export default function Stories({ stories }: StoriesListProp) {
     const storiesList = stories.data;
 
     if (!stories) {
@@ -26,6 +23,7 @@ export default function Stories({ stories, user }: StoriesListProp) {
                     className="relative h-62.5 w-45 min-w-35 overflow-hidden"
                 >
                     <img
+                        alt="story"
                         className="absolute inset-0 h-full w-full object-cover"
                         src={story.image}
                     />
@@ -34,6 +32,7 @@ export default function Stories({ stories, user }: StoriesListProp) {
                         <span className="font-bold">Story name</span>
                         <div className="">
                             <span>{story.created_at}</span>
+
                         </div>
                     </div>
                 </Card>

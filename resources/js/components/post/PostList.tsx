@@ -11,20 +11,19 @@ interface PostListProps {
         meta: { total: number; current_page: number; last_page: number };
         links: { next?: string; prev?: string };
     };
-    user:{
-        data:User;
-    }
 }
 
-export default function PostList({ posts, user }: PostListProps) {
+export default function PostList({ posts }: PostListProps) {
     const postList = posts.data;
     const postPages = posts.meta;
 
-    const handlePageChange = createPageNavigator('/', true);
+    const handlePageChange = createPageNavigator('/profile', true);
 
     if (!postList || postList.length === 0) {
         return <div>No posts yet...</div>;
     }
+
+    console.log(postPages)
 
     return (
         <div className="mt-8 justify-items-center space-y-8 overflow-auto shadow-xl">

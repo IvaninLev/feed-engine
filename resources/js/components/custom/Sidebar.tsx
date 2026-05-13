@@ -1,9 +1,9 @@
 import { Icon } from '@iconify/react';
 import { usePage } from '@inertiajs/react';
 import type { User } from '@/types';
-import image from "../../../images/testImage.svg"
+import fallbackImg from '../../../images/testImage.svg';
 interface PageProps {
-    user: User;
+    user?: User;
     auth: {
         user: User;
     };
@@ -13,18 +13,28 @@ interface PageProps {
 export function AppSidebar() {
     const { user, auth } = usePage<PageProps>().props;
 
+    const displayUser = user ?? auth.user;
+
+    const avatarSrc = displayUser?.avatar
+        ? `/storage/${displayUser.avatar}`
+        : fallbackImg;
+
+    const bannerSrc = displayUser?.banner
+        ? `/storage/${displayUser.banner}`
+        : fallbackImg;
+
     return (
         <aside className="flex w-75 flex-col bg-[#202020] text-white">
             <div className="relative flex w-full justify-center">
                 <img
                     alt="sidebarHeader"
-                    src={user?.banner ?? auth?.user.banner ?? image}
+                    src={bannerSrc}
                     className="h-45 w-full object-cover"
                 />
                 <img
                     alt="avatar"
                     className="absolute -bottom-10 h-20 w-20 rounded-full border-2 border-[#202020] object-cover shadow-lg"
-                    src={user?.avatar ?? auth.user.avatar ?? image}
+                    src={avatarSrc}
                 />
             </div>
 
