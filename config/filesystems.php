@@ -33,7 +33,9 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true,
+            // Don't register Laravel's dynamic /storage/{path} route for the "local" (private) disk.
+            // Public assets should be served via the public disk + public/storage symlink.
+            'serve' => false,
             'throw' => false,
             'report' => false,
         ],

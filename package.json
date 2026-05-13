@@ -3,14 +3,17 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build",
         "build:ssr": "vite build && vite build --ssr",
-        "dev": "vite",
+        "ziggy:generate": "php artisan ziggy:generate resources/js/ziggy.js",
+        "dev": "npm run ziggy:generate && vite",
+        "build": "npm run ziggy:generate && vite build",
         "format": "prettier --write resources/",
         "format:check": "prettier --check resources/",
         "lint": "eslint . --fix",
         "lint:check": "eslint .",
-        "types:check": "tsc --noEmit"
+        "types:check": "tsc --noEmit",
+
+
     },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
