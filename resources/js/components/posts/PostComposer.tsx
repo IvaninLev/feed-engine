@@ -8,12 +8,11 @@ interface PostProps {
     image: File | null;
 }
 
-export default function CreatePost() {
-    const { data, setData, post, processing, errors, reset } =
-        useForm<PostProps>({
-            text: '',
-            image: null,
-        });
+export default function PostComposer() {
+    const { data, setData, post, errors, reset } = useForm<PostProps>({
+        text: '',
+        image: null,
+    });
 
     const [previewUrl, setPreviewUrl] = useState<string | null>();
 
@@ -22,7 +21,7 @@ export default function CreatePost() {
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         post(window.route('post.store'), {
-            onSuccess: () => reset('text','image'),
+            onSuccess: () => reset('text', 'image'),
             onError: () => console.log('тут легло', errors),
         });
     };
@@ -56,10 +55,9 @@ export default function CreatePost() {
                                 return;
                             }
 
-                            const url = URL.createObjectURL(file);
 
                             if (previewUrl) {
-                                URL.revokeObjectURL(url);
+                                URL.revokeObjectURL(previewUrl);
                             }
 
                             setData('image', file);

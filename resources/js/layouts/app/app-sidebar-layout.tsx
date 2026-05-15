@@ -1,6 +1,6 @@
 import { usePage } from '@inertiajs/react';
-import { AppHeader } from '@/components/custom/Header';
-import { AppSidebar } from '@/components/custom/Sidebar';
+import { AppHeader } from '../../components/layout/AppHeader';
+import { AppSidebar } from '../../components/layout/AppSidebar';
 import { AppContent } from '@/components/laravel/app-content';
 import { AppShell } from '@/components/laravel/app-shell';
 import type { AppLayoutProps } from '@/types';

@@ -1,5 +1,5 @@
 import { Card } from 'resources/js/components/ui/card';
-import type { Story, User } from 'resources/js/types';
+import type { Story  } from 'resources/js/types';
 
 interface StoriesListProp {
     stories: {
@@ -10,10 +10,6 @@ interface StoriesListProp {
 }
 export default function Stories({ stories }: StoriesListProp) {
     const storiesList = stories.data;
-
-    if (!stories) {
-        return <div>No posts yet...</div>;
-    }
 
     return (
         <div className="mt-16 flex w-full justify-center space-x-5">

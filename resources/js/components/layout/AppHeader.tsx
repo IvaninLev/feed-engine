@@ -31,8 +31,8 @@ export function AppHeader() {
                     >
                         Posts
                     </button>
-                    <Link className="text-[18px]" href="#">
-                        About
+                    <Link className="text-[18px]" href="/users">
+                        Users
                     </Link>
                     <button
                         onClick={() => toggle('create')}
@@ -79,7 +79,7 @@ export function AppHeader() {
                 </div>
             )}
             {menus.profile && (
-                <div className="absolute top-full right-64 gap-2 z-50 grid w-20 justify-start space-y-2 rounded-b-md border border-zinc-800 bg-[#151515] px-3 py-2 shadow-xl">
+                <div className="absolute top-full right-64 z-50 grid w-20 justify-start gap-2 space-y-2 rounded-b-md border border-zinc-800 bg-[#151515] px-3 py-2 shadow-xl">
                     <Link href="/profile">Profile</Link>
                     <Link href="/profile/edit">Edit</Link>
                     <Link method="post" href="/logout">

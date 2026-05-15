@@ -1,19 +1,16 @@
 import { Link } from '@inertiajs/react';
-import { Card } from '@/components/ui/card';
-import Pagination from '@/components/ui/pagination';
-import { createPageNavigator } from '@/hooks/use-pagination-navigation';
-import type { User } from '@/types';
+import { Card } from 'resources/js/components/ui/card';
+import Pagination from 'resources/js/components/ui/pagination';
+import { createPageNavigator } from 'resources/js/hooks/use-pagination-navigation';
+import type { PaginatedResponse, User } from 'resources/js/types';
 
 interface UsersProps {
-    users: {
-        data: User[];
-        meta: { total: number; current_page: number; last_page: number };
-        links: { next?: string; prev?: string };
-    };
+    users: PaginatedResponse<User>;
 }
 
-export default function Users({ users }: UsersProps) {
+export default function UsersList({ users }: UsersProps) {
     const pages = users.meta;
+
 
     const usersList = users.data;
 
@@ -58,7 +55,7 @@ export default function Users({ users }: UsersProps) {
                             </div>
                         </div>
                         <Link
-                            href={`user/${user.id}`}
+                            href={`/user/${user.id}`}
                             className="w-full rounded-lg px-4 py-2 text-sm font-semibold text-white transition-all"
                         >
                             View Profile
@@ -66,11 +63,11 @@ export default function Users({ users }: UsersProps) {
                     </Card>
                 ))}
             </div>
-            {/*<Pagination*/}
-            {/*    currentPage={pages.current_page}*/}
-            {/*    lastPage={pages.last_page}*/}
-            {/*    onPageChange={handlePageChange}*/}
-            {/*/>*/}
+            <Pagination
+                currentPage={pages.current_page}
+                lastPage={pages.last_page}
+                onPageChange={handlePageChange}
+            />
         </section>
     );
 }

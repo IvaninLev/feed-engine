@@ -1,9 +1,8 @@
+import { Link } from '@inertiajs/react';
 import { Card, CardTitle } from 'resources/js/components/ui/card';
 import Pagination from 'resources/js/components/ui/pagination';
-import {
-    createPageNavigator,
-} from 'resources/js/hooks/use-pagination-navigation';
-import type { Post, User } from 'resources/js/types';
+import { createPageNavigator } from 'resources/js/hooks/use-pagination-navigation';
+import type { Post } from 'resources/js/types';
 
 interface PostListProps {
     posts: {
@@ -13,7 +12,7 @@ interface PostListProps {
     };
 }
 
-export default function PostList({ posts }: PostListProps) {
+export function PostList({ posts }: PostListProps) {
     const postList = posts.data;
     const postPages = posts.meta;
 
@@ -23,7 +22,7 @@ export default function PostList({ posts }: PostListProps) {
         return <div>No posts yet...</div>;
     }
 
-    console.log(postPages)
+    console.log(postPages);
 
     return (
         <div className="mt-8 justify-items-center space-y-8 overflow-auto shadow-xl">
@@ -34,7 +33,7 @@ export default function PostList({ posts }: PostListProps) {
                 >
                     {post.image && (
                         <img
-                            src={post.image}
+                            src={`/storage/${post.image}`}
                             className="h-75 w-full rounded-lg border border-zinc-800 object-cover"
                             alt="Post content"
                         />
@@ -43,7 +42,22 @@ export default function PostList({ posts }: PostListProps) {
                         <CardTitle className="text-zinc-100">
                             {post.title}
                         </CardTitle>
-                        <p className="mt-2 text-zinc-400">{post.text}</p>
+                        <p className="mt-2 text-zinc-400">
+                            {post.text.slice(0, 300)}
+                        </p>
+                        <div className="flex w-full justify-between">
+                            <span className="pt-2 text-sm text-[#828282]">
+                                {post.created_at}
+                            </span>
+                            {post.text.length > 300 && (
+                                <Link
+                                    href={`/post/${post.slug}`}
+                                    className="text-[#107EFF]"
+                                >
+                                    Read more
+                                </Link>
+                            )}
+                        </div>
                     </div>
                 </Card>
             ))}

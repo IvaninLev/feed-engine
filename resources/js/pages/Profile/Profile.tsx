@@ -1,19 +1,10 @@
-import type { Post, Story, User } from '@/types';
-import PostList from '../../components/post/PostList';
+import type { PaginatedResponse, Post, Story } from '@/types';
+import { PostList } from '../../components/posts/PostList';
 import Stories from '../../components/story/Stories';
 
 interface ListProps {
-    posts: {
-        data: Post[];
-        meta: any;
-        links: any;
-    };
-    stories: {
-        data: Story[];
-        meta: any;
-        links: any;
-    };
-
+    posts: PaginatedResponse<Post>;
+    stories: PaginatedResponse<Story>;
 }
 export default function Profile({ posts, stories }: ListProps) {
 
