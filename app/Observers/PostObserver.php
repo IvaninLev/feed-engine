@@ -14,7 +14,7 @@ class PostObserver
         if ($post->isDirty('text')) {
             $lines = explode("\n", trim($post->text));
             $firstLine = $lines[0] ?? 'Untitled post';
-            $post->title = Str::limit($firstLine, 100, '');
+            $post->title = Str::limit($firstLine, 50, '');
 
             if (! $post->exists || empty($post->slug)) {
                 $post->slug = Str::slug($post->title).'-'.Str::lower(Str::random(5));

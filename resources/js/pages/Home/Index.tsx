@@ -1,18 +1,10 @@
-import Users from '@/components/feed/home/Users';
-import type { User } from '@/types';
-
-interface UserProps {
-    users: {
-        data: User[];
-        meta: any;
-        links: any;
-    };
+import type { PaginatedResponse, Post } from '@/types';
+import HomeFeed from '../../components/home/HomeFeed';
+interface ListProps{
+    posts: PaginatedResponse<Post>
 }
-
-export default function Index({ users }: UserProps) {
-    return (
-        <div>
-            <Users  users={users } />
-        </div>
-    );
+export default function Index({posts}: ListProps){
+    return(
+                <HomeFeed posts={posts}/>
+        );
 }

@@ -3,6 +3,19 @@ export type * from './auth';
 export type * from './navigation';
 export type * from './ui';
 
+export interface PaginatedResponse<T> {
+    data: T[];
+    meta: {
+        current_page: number;
+        last_page: number;
+        total: number;
+    };
+    links: {
+        next?: string;
+        prev?: string;
+    };
+}
+
 export interface Post {
     id: number;
     title: string;

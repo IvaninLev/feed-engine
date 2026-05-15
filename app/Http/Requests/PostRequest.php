@@ -13,7 +13,7 @@ class PostRequest extends FormRequest
 
             'title' => ['nullable', 'string', 'max:255'],
 
-            'image' => ['nullable', 'string'],
+            'image' => ['nullable', 'file', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
 
         ];
     }
