@@ -1,5 +1,6 @@
 import { useForm } from '@inertiajs/react';
 import { CameraIcon, SendHorizonal } from 'lucide-react';
+import type { SyntheticEvent } from 'react';
 import { useRef, useState } from 'react';
 import { Card } from 'resources/js/components/ui/card';
 
@@ -9,20 +10,32 @@ interface PostProps {
 }
 
 export default function PostComposer() {
-    const { data, setData, post, errors, reset } = useForm<PostProps>({
+    const { data, setData, post, reset } = useForm<PostProps>({
         text: '',
         image: null,
     });
+
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    const resizeTextArea = () => {
+        const textarea = textareaRef.current;
+
+        if (!textarea) {
+            return;
+        }
+
+        textarea.style.height = 'auto';
+        textarea.style.height = `${textarea.scrollHeight}px`;
+    };
 
     const [previewUrl, setPreviewUrl] = useState<string | null>();
 
     const fileRef = useRef<HTMLInputElement>(null);
 
-    const submit = (e: React.SyntheticEvent) => {
+    const submit = (e: SyntheticEvent) => {
         e.preventDefault();
         post(window.route('post.store'), {
             onSuccess: () => reset('text', 'image'),
-            onError: () => console.log('тут легло', errors),
         });
     };
 
@@ -37,10 +50,14 @@ export default function PostComposer() {
                     />
                 )}
                 <textarea
+                    ref={textareaRef}
                     placeholder="Write something"
                     value={data.text}
-                    onChange={(e) => setData('text', e.target.value)}
-                    className="flex-1 resize-none bg-transparent py-1 text-sm outline-none"
+                    onChange={(e) => {
+                        setData('text', e.target.value);
+                        resizeTextArea();
+                    }}
+                    className="flex-1 resize-none overflow-hidden bg-transparent py-1 text-sm outline-none"
                 />
                 <div className="flex space-x-4">
                     <input
@@ -54,7 +71,6 @@ export default function PostComposer() {
                             if (!file) {
                                 return;
                             }
-
 
                             if (previewUrl) {
                                 URL.revokeObjectURL(previewUrl);
